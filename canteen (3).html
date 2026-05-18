@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CanteeNow – School Canteen Pre-Order</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--o:#f4621f;--b:#2c1a0e;--c:#fdf6ec;--g:#e8a830;--s:#fff8f0;--gr:#2d7a4f;--mu:#7a5c40}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--c);font-family:'DM Sans',sans-serif;color:var(--b);overflow-x:hidden}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.75rem 1.8rem;border-radius:50px;font-weight:600;font-size:.92rem;font-family:'DM Sans',sans-serif;cursor:pointer;transition:.22s;border:none;white-space:nowrap}
+.bp{background:var(--o);color:#fff;box-shadow:0 6px 20px rgba(244,98,31,.3)}.bp:hover{background:#d44d10;transform:translateY(-2px)}
+.bo{background:transparent;color:var(--b);border:2px solid var(--b)}.bo:hover{background:var(--b);color:#fff}
+.bsm{padding:.42rem 1rem;font-size:.8rem}
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 5%;position:fixed;top:0;width:100%;z-index:200;background:rgba(253,246,236,.97);backdrop-filter:blur(10px);border-bottom:1px solid rgba(244,98,31,.12)}
+.logo{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:900;color:var(--o);cursor:pointer}.logo span{color:var(--b)}
+.nav-ul{list-style:none;display:flex;gap:1.5rem;align-items:center}
+.nav-ul a{text-decoration:none;color:var(--b);font-weight:500;font-size:.88rem;cursor:pointer;transition:.2s}.nav-ul a:hover{color:var(--o)}
+.np{background:var(--o);color:#fff!important;padding:.4rem 1.2rem;border-radius:50px}
+.cart-ic{cursor:pointer;font-size:1.25rem;position:relative;background:none;border:none}
+.cb{position:absolute;top:-6px;right:-8px;background:var(--o);color:#fff;border-radius:50%;width:17px;height:17px;font-size:.6rem;font-weight:700;display:flex;align-items:center;justify-content:center;display:none}
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:7rem 5% 4rem;gap:3rem;background:radial-gradient(ellipse at 72% 50%,#ffe8d0,var(--c) 62%)}
+.htag{display:inline-block;background:var(--g);color:var(--b);padding:.3rem 1rem;border-radius:50px;font-size:.78rem;font-weight:600;margin-bottom:1.2rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4.5vw,3.8rem);line-height:1.1;font-weight:900;margin-bottom:1.1rem}
+.hero h1 em{color:var(--o);font-style:normal;display:block}
+.hero p{font-size:1rem;line-height:1.75;color:#6b4c30;max-width:430px;margin-bottom:2rem}
+.hbtns{display:flex;gap:.9rem;flex-wrap:wrap}
+.hbadges{display:flex;gap:1.5rem;margin-top:2rem;flex-wrap:wrap}
+.hb{font-size:.8rem;color:var(--mu);font-weight:500;display:flex;align-items:center;gap:.4rem}
+.hb::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--gr);display:block}
+/* Float card */
+.hv{position:relative;display:flex;justify-content:center;align-items:center}
+.fc{background:#fff;border-radius:22px;padding:1.7rem;box-shadow:0 20px 55px rgba(44,26,14,.13);width:295px;animation:flt 4s ease-in-out infinite}
+@keyframes flt{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.fch{display:flex;align-items:center;gap:.7rem;padding-bottom:.9rem;border-bottom:1px solid #f0e8e0;margin-bottom:1rem}
+.fca{width:38px;height:38px;background:linear-gradient(135deg,var(--o),var(--g));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.95rem;flex-shrink:0}
+.fch h4{font-family:'Playfair Display',serif;font-size:.92rem}.fch p{font-size:.72rem;color:#bbb}
+.fi{display:flex;justify-content:space-between;align-items:center;padding:.55rem 0;border-bottom:1px solid #f5f0ea}
+.fi:last-child{border:none;padding-bottom:0}
+.fi .n{font-weight:500;font-size:.84rem}.fi .p{color:var(--o);font-weight:700;font-size:.84rem}
+.hbadge{position:absolute;top:-12px;right:-12px;background:var(--g);color:var(--b);border-radius:50px;padding:.28rem .9rem;font-size:.76rem;font-weight:700;box-shadow:0 4px 14px rgba(232,168,48,.4)}
+/* STATS */
+.stats{background:var(--b);padding:2.8rem 5%;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.sv{font-family:'Playfair Display',serif;font-size:2.3rem;font-weight:900;color:var(--g)}.sl{color:#cbb49a;font-size:.84rem;margin-top:.3rem}
+/* SECTION */
+.sec{padding:4.5rem 5%}.sec-alt{background:var(--s)}
+.sl2{text-align:center;color:var(--o);font-size:.8rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:.4rem}
+.st{text-align:center;font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3vw,2.4rem);font-weight:900;margin-bottom:.7rem}
+.ss{text-align:center;color:var(--mu);font-size:.91rem;max-width:510px;margin:0 auto 2.8rem;line-height:1.7}
+/* MENU CARDS */
+.tabs{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2.2rem;justify-content:center}
+.tab{padding:.4rem 1.1rem;border-radius:50px;border:2px solid #ddd5c8;background:#fff;cursor:pointer;font-size:.84rem;font-weight:500;transition:.2s;font-family:'DM Sans',sans-serif;color:var(--b)}
+.tab.active,.tab:hover{background:var(--o);color:#fff;border-color:var(--o)}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.3rem}
+.mc{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 3px 16px rgba(44,26,14,.07);transition:.3s;border:2px solid transparent}
+.mc:hover{transform:translateY(-5px);box-shadow:0 12px 32px rgba(244,98,31,.14);border-color:rgba(244,98,31,.15)}
+.mimg{height:110px;display:flex;align-items:center;justify-content:center;font-size:3rem;background:var(--s)}
+.minfo{padding:.85rem 1rem 1rem}
+.minfo h4{font-family:'Playfair Display',serif;font-size:.93rem;margin-bottom:.2rem}
+.minfo p{font-size:.76rem;color:#9a7a5a;margin-bottom:.75rem;line-height:1.5}
+.mfoot{display:flex;justify-content:space-between;align-items:center}
+.mpr{font-weight:700;color:var(--o);font-size:.97rem}
+.tag{font-size:.68rem;padding:.15rem .5rem;border-radius:50px;font-weight:600}
+.tv{background:#e8f5e9;color:var(--gr)}.tp{background:#fff3e0;color:var(--o)}
+/* STEPS */
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:1.8rem;position:relative}
+.sg::before{content:'';position:absolute;top:26px;left:12%;right:12%;height:2px;background:linear-gradient(to right,var(--o),var(--g));z-index:0}
+.sb{text-align:center;position:relative;z-index:1}
+.sn{width:52px;height:52px;background:var(--o);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;margin:0 auto 1rem;box-shadow:0 5px 16px rgba(244,98,31,.28)}
+.sb h4{font-family:'Playfair Display',serif;font-size:.95rem;margin-bottom:.4rem}.sb p{font-size:.8rem;color:var(--mu);line-height:1.6}
+/* FEATURES */
+.fg2{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:1.3rem}
+.fcard{background:#fff;border-radius:16px;padding:1.6rem 1.3rem;text-align:center;transition:.3s;border:2px solid transparent}
+.fcard:hover{border-color:var(--o);transform:translateY(-4px);box-shadow:0 10px 30px rgba(244,98,31,.12)}
+.fi2{font-size:2rem;margin-bottom:.7rem;display:block}
+.fcard h3{font-family:'Playfair Display',serif;font-size:.97rem;margin-bottom:.4rem}
+.fcard p{font-size:.8rem;color:var(--mu);line-height:1.6}
+/* TESTI */
+.tg{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.3rem}
+.tc{background:#fff;border-radius:16px;padding:1.6rem;border-left:4px solid var(--o);box-shadow:0 3px 14px rgba(44,26,14,.06)}
+.stars{color:var(--g);font-size:.9rem;margin-bottom:.7rem}
+.tc blockquote{font-size:.86rem;line-height:1.75;color:#5a3e28;font-style:italic;margin-bottom:.9rem}
+.ta{display:flex;align-items:center;gap:.65rem}
+.tav{width:34px;height:34px;border-radius:50%;background:var(--o);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#fff}
+.ta strong{font-size:.86rem;display:block}.ta span{font-size:.73rem;color:#aaa}
+/* CTA */
+.cta{padding:5rem 5%;background:var(--b);text-align:center;color:#fff;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(244,98,31,.22),transparent 70%)}
+.cta h2{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.7rem);font-weight:900;margin-bottom:.9rem;position:relative}
+.cta>p{font-size:.95rem;opacity:.78;margin-bottom:2rem;position:relative}
+/* FOOTER */
+.ftop{background:#1a0d04;padding:3rem 5% 2rem;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem}
+.fbrand p{color:#9a7a5a;font-size:.84rem;line-height:1.7;max-width:240px;margin-top:.7rem}
+.fcol h5{color:#e8d5c0;font-size:.86rem;font-weight:600;margin-bottom:.9rem}
+.fcol ul{list-style:none}.fcol ul li{margin-bottom:.5rem}
+.fcol ul li a{color:#9a7a5a;text-decoration:none;font-size:.82rem;cursor:pointer;transition:.2s}.fcol ul li a:hover{color:var(--o)}
+.fbot{background:#0f0500;color:#6a4a2a;text-align:center;padding:1rem;font-size:.79rem}.fbot span{color:var(--o)}
+/* MODALS */
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px)}
+.ov.open{display:flex}
+.modal{background:#fff;border-radius:22px;padding:2.2rem;width:100%;max-width:470px;max-height:88vh;overflow-y:auto;position:relative;animation:pop .28s ease}
+@keyframes pop{from{transform:scale(.9) translateY(20px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
+.mx{position:absolute;top:1rem;right:1.2rem;font-size:1.45rem;cursor:pointer;color:#ccc;background:none;border:none;transition:.2s}.mx:hover{color:var(--b)}
+.modal h2{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:1.3rem}
+.fg3{margin-bottom:.9rem}.fg3 label{display:block;font-size:.82rem;font-weight:600;margin-bottom:.32rem;color:#5a3e28}
+.fg3 input,.fg3 select{width:100%;padding:.68rem 1rem;border:2px solid #e8ddd3;border-radius:11px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none;transition:.2s;color:var(--b)}
+.fg3 input:focus,.fg3 select:focus{border-color:var(--o)}
+.mbtn{width:100%;padding:.85rem;background:var(--o);color:#fff;border:none;border-radius:50px;font-size:.96rem;font-family:'DM Sans',sans-serif;font-weight:600;cursor:pointer;transition:.25s;margin-top:.3rem}.mbtn:hover{background:#d44d10}
+.mlink{text-align:center;font-size:.82rem;margin-top:.85rem;color:#999}.mlink a{color:var(--o);cursor:pointer;font-weight:600}
+.rtabs{display:flex;gap:.5rem;margin-bottom:1.3rem}
+.rtab{flex:1;padding:.52rem;border:2px solid #e8ddd3;border-radius:11px;text-align:center;cursor:pointer;font-size:.84rem;font-weight:500;transition:.2s;background:#fff;font-family:'DM Sans',sans-serif}
+.rtab.active{border-color:var(--o);background:#fff5ef;color:var(--o)}
+/* CART */
+.ci{display:flex;justify-content:space-between;align-items:center;padding:.75rem 0;border-bottom:1px solid #f5f0ea;gap:.5rem}
+.ci .cn{font-weight:500;font-size:.88rem}.ci .cp{color:var(--o);font-weight:700;min-width:40px;text-align:right}
+.qc{display:flex;align-items:center;gap:.4rem}
+.qb{width:25px;height:25px;border-radius:50%;border:1px solid #e0d0c0;background:#fff;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;transition:.2s;font-family:'DM Sans',sans-serif}.qb:hover{background:var(--o);color:#fff;border-color:var(--o)}
+.qn{font-weight:600;font-size:.88rem;min-width:18px;text-align:center}
+.cr{background:none;border:none;color:#ddd;cursor:pointer;font-size:.95rem;transition:.2s}.cr:hover{color:#c0392b}
+.ctotal{display:flex;justify-content:space-between;padding:.9rem 0 .4rem;font-weight:700;font-size:1.02rem;border-top:2px solid var(--o);margin-top:.4rem}
+.empty{text-align:center;padding:2rem 0;color:#bbb;font-size:.9rem}
+/* PAY */
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.1rem}
+.po{border:2px solid #e8ddd3;border-radius:13px;padding:1rem .7rem;text-align:center;cursor:pointer;transition:.2s;background:#fff}
+.po:hover,.po.sel{border-color:var(--o);background:#fff5ef}
+.po .pi{font-size:1.8rem;margin-bottom:.25rem}.po span{font-size:.8rem;font-weight:500;display:block}
+/* ORDER TRACK */
+.trk{display:flex;justify-content:space-between;position:relative;margin:1.4rem 0 2rem;padding:0 .5rem}
+.trk::before{content:'';position:absolute;top:20px;left:5%;right:5%;height:3px;background:#f0e8e0;z-index:0}
+.tn{text-align:center;flex:1;position:relative;z-index:1}
+.td{width:40px;height:40px;border-radius:50%;border:3px solid #e8ddd3;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto .4rem;font-size:1rem;transition:.4s}
+.td.done{background:var(--gr);border-color:var(--gr)}.td.act{background:var(--o);border-color:var(--o);box-shadow:0 0 0 4px rgba(244,98,31,.18)}
+.tn span{font-size:.72rem;font-weight:500;color:#bbb}.tn span.done,.tn span.act{color:var(--b)}
+/* ALERT */
+.al{padding:.7rem .9rem;border-radius:10px;font-size:.83rem;margin-bottom:.9rem;font-weight:500}
+.ale{background:#fdecea;color:#c0392b;border:1px solid #f5c6c6}
+.als{background:#e8f5e9;color:var(--gr);border:1px solid #c8e6c9}
+/* TOAST */
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--b);color:#fff;padding:.72rem 1.3rem;border-radius:50px;font-size:.84rem;font-weight:500;z-index:999;opacity:0;transform:translateY(14px);transition:.32s;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}.toast.ok{background:var(--gr)}
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;padding-top:5.5rem;text-align:center}.hero p{margin:0 auto 2rem}.hbtns{justify-content:center}.hv{display:none}
+  .stats{grid-template-columns:1fr 1fr;gap:1.2rem}.nav-ul{display:none}.sg::before{display:none}
+  .ftop{grid-template-columns:1fr 1fr}.fg2,.tg{gap:1rem}
+}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo" onclick="scrollTo(0,0)">Cantee<span>Now</span></div>
+  <ul class="nav-ul">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#menu-sec">Menu</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#modules">Modules</a></li>
+    <li><a onclick="openM('loginM')" class="np">Login / Register</a></li>
+  </ul>
+  <button class="cart-ic" onclick="openM('cartM')">🛒<span class="cb" id="cb">0</span></button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div>
+    <span class="htag">🍽 School Canteen Pre-Order System</span>
+    <h1>Skip the Queue,<em>Enjoy the Food.</em></h1>
+    <p>Pre-order your lunch before the bell rings. Saves time, cuts queues, and guarantees your favourite meal is ready when you arrive.</p>
+    <div class="hbtns">
+      <button class="btn bp" onclick="openM('loginM')">Start Pre-Ordering →</button>
+      <button class="btn bo" onclick="document.getElementById('menu-sec').scrollIntoView({behavior:'smooth'})">View Today's Menu</button>
+    </div>
+    <div class="hbadges">
+      <span class="hb">1,200+ students served daily</span>
+      <span class="hb">Zero queue wait time</span>
+      <span class="hb">Secure online payment</span>
+    </div>
+  </div>
+  <div class="hv">
+    <div class="hbadge">✅ Order Ready!</div>
+    <div class="fc">
+      <div class="fch"><div class="fca">🧑</div><div><h4>Today's Menu</h4><p>Pre-order before 10:00 AM</p></div></div>
+      <div class="fi"><span class="n">🍱 Veg Biryani</span><span class="p">₹45</span><button class="btn bp bsm" onclick="addCart('Veg Biryani',45)">+</button></div>
+      <div class="fi"><span class="n">🥪 Paneer Sandwich</span><span class="p">₹30</span><button class="btn bp bsm" onclick="addCart('Paneer Sandwich',30)">+</button></div>
+      <div class="fi"><span class="n">🍜 Noodles Bowl</span><span class="p">₹35</span><button class="btn bp bsm" onclick="addCart('Noodles Bowl',35)">+</button></div>
+      <div class="fi"><span class="n">🥤 Fresh Juice</span><span class="p">₹20</span><button class="btn bp bsm" onclick="addCart('Fresh Juice',20)">+</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div><div class="sv">1,200+</div><div class="sl">Students Served Daily</div></div>
+  <div><div class="sv">98%</div><div class="sl">On-time Order Rate</div></div>
+  <div><div class="sv">40+</div><div class="sl">Menu Items</div></div>
+  <div><div class="sv">0 min</div><div class="sl">Average Queue Wait</div></div>
+</div>
+
+<!-- MENU -->
+<section class="sec" id="menu-sec">
+  <p class="sl2">What's Cooking</p><h2 class="st">Today's Featured Menu</h2>
+  <p class="ss">Fresh, nutritious meals prepared daily. Pre-order to guarantee your favourite!</p>
+  <div class="tabs">
+    <button class="tab active" onclick="filter('all',this)">All</button>
+    <button class="tab" onclick="filter('meal',this)">Meals</button>
+    <button class="tab" onclick="filter('snack',this)">Snacks</button>
+    <button class="tab" onclick="filter('drink',this)">Drinks</button>
+  </div>
+  <div class="mgrid" id="mg">
+    <div class="mc" data-c="meal"><div class="mimg">🍱</div><div class="minfo"><h4>Veg Biryani</h4><p>Aromatic basmati with seasonal veggies</p><div class="mfoot"><span class="mpr">₹45</span><div style="display:flex;gap:.4rem;align-items:center"><span class="tag tv">Veg</span><button class="btn bp bsm" onclick="addCart('Veg Biryani',45)">+ Add</button></div></div></div></div>
+    <div class="mc" data-c="snack"><div class="mimg">🥪</div><div class="minfo"><h4>Paneer Sandwich</h4><p>Grilled with mint chutney & veggies</p><div class="mfoot"><span class="mpr">₹30</span><div style="display:flex;gap:.4rem;align-items:center"><span class="tag tv">Veg</span><button class="btn bp bsm" onclick="addCart('Paneer Sandwich',30)">+ Add</button></div></div></div></div>
+    <div class="mc" data-c="meal"><div class="mimg">🍜</div><div class="minfo"><h4>Noodles Bowl</h4><p>Stir-fried Hakka noodles with sauces</p><div class="mfoot"><span class="mpr">₹35</span><div style="display:flex;gap:.4rem;align-items:center"><span class="tag tv">Veg</span><button class="btn bp bsm" onclick="addCart('Noodles Bowl',35)">+ Add</button></div></div></div></div>
+    <div class="mc" data-c="drink"><div class="mimg">🥤</div><div class="minfo"><h4>Fresh Lime Juice</h4><p>Chilled nimbu pani with mint</p><div class="mfoot"><span class="mpr">₹20</span><div style="display:flex;gap:.4rem;align-items:center"><span class="tag tv">Veg</span><button class="btn bp bsm" onclick="addCart('Fresh Lime Juice',20)">+ Add</button></div></div></div></div>
+    <div class="mc" data-c="snack"><div class="mimg">🥟</div><div class="minfo"><h4>Samosa (2 pcs)</h4><p>Crispy fried with tamarind chutney</p><div class="mfoot"><span class="mpr">₹15</span><div style="display:flex;gap:.4rem;align-items:center"><span class="tag tv">Veg</span><button class="btn bp bsm" onclick="addCart('Samosa',15)">+ Add</button></div></div></div></div>
+    <div class="mc" data-c="meal"><div class="mimg">🍛</div><div class="minfo"><h4>Dal Rice Combo</h4><p>Wholesome yellow dal with steamed rice</p><div class="mfoot"><span class="mpr">₹40</span><div style="display:flex;gap:.4rem;align-items:center"><span class="tag tv">Veg</span><button class="btn bp bsm" onclick="addCart('Dal Rice Combo',40)">+ Add</button></div></div></div></div>
+    <div class="mc" data-c="drink"><div class="mimg">🥛</div><div class="minfo"><h4>Cold Coffee</h4><p>Chilled milk & coffee blend</p><div class="mfoot"><span class="mpr">₹25</span><div style="display:flex;gap:.4rem;align-items:center"><span class="tag tp">Popular</span><button class="btn bp bsm" onclick="addCart('Cold Coffee',25)">+ Add</button></div></div></div></div>
+    <div class="mc" data-c="snack"><div class="mimg">🫓</div><div class="minfo"><h4>Masala Dosa</h4><p>Crispy dosa with potato filling & chutney</p><div class="mfoot"><span class="mpr">₹25</span><div style="display:flex;gap:.4rem;align-items:center"><span class="tag tp">Special</span><button class="btn bp bsm" onclick="addCart('Masala Dosa',25)">+ Add</button></div></div></div></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec sec-alt" id="how">
+  <p class="sl2">How It Works</p><h2 class="st">Order in 4 Simple Steps</h2><p class="ss">From login to lunch in under two minutes.</p>
+  <div class="sg">
+    <div class="sb"><div class="sn">1</div><h4>Login Securely</h4><p>Sign in with your school credentials to access the system.</p></div>
+    <div class="sb"><div class="sn">2</div><h4>Browse the Menu</h4><p>View today's dishes updated fresh each morning by canteen staff.</p></div>
+    <div class="sb"><div class="sn">3</div><h4>Place Your Order</h4><p>Select items and pay online or choose cash on pickup.</p></div>
+    <div class="sb"><div class="sn">4</div><h4>Collect & Enjoy</h4><p>Walk to the counter — your food is ready and waiting!</p></div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section class="sec" id="modules">
+  <p class="sl2">System Modules</p><h2 class="st">Everything in One Place</h2>
+  <p class="ss">Built with React.js, Node.js & MongoDB — five integrated modules powering the whole experience.</p>
+  <div class="fg2">
+    <div class="fcard"><span class="fi2">🎨</span><h3>User Interface</h3><p>Responsive screens for login, menu browsing, and order placement — mobile-first design.</p></div>
+    <div class="fcard"><span class="fi2">🔐</span><h3>Authentication</h3><p>Secure student & admin login with role-based access and session management.</p></div>
+    <div class="fcard"><span class="fi2">📋</span><h3>Order Management</h3><p>Real-time order tracking from placement to pickup — students and staff in sync.</p></div>
+    <div class="fcard"><span class="fi2">🛠</span><h3>Admin Panel</h3><p>Canteen manager can update menu, toggle availability, and view all live orders.</p></div>
+    <div class="fcard"><span class="fi2">💳</span><h3>Payment Integration</h3><p>UPI / online payment or cash-on-pickup — seamless, flexible transactions.</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec sec-alt">
+  <p class="sl2">What They Say</p><h2 class="st">Students & Staff Love It</h2><p class="ss">Real feedback from our school community.</p>
+  <div class="tg">
+    <div class="tc"><div class="stars">★★★★★</div><blockquote>"I used to waste 15 minutes in queue. Now my biryani is ready the moment I reach the canteen!"</blockquote><div class="ta"><div class="tav">😊</div><div><strong>Riya Sharma</strong><span>Class 11-A Student</span></div></div></div>
+    <div class="tc"><div class="stars">★★★★★</div><blockquote>"Managing 300+ orders used to be chaos. With CanteeNow, food wastage has dropped by 40%!"</blockquote><div class="ta"><div class="tav">👩‍🍳</div><div><strong>Mrs. Lakshmi</strong><span>Canteen Manager</span></div></div></div>
+    <div class="tc"><div class="stars">★★★★☆</div><blockquote>"Our students are eating better and on time. The admin panel makes monitoring super easy!"</blockquote><div class="ta"><div class="tav">👨‍🏫</div><div><strong>Mr. Prasad</strong><span>Vice Principal</span></div></div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2>Ready to Pre-Order Your Lunch?</h2>
+  <p>Join 1,200+ students already saving time with CanteeNow every day.</p>
+  <button class="btn bp" onclick="openM('loginM')" style="font-size:1rem">Get Started — It's Free →</button>
+</section>
+
+<!-- FOOTER -->
+<div class="ftop">
+  <div class="fbrand">
+    <div class="logo">Cantee<span>Now</span></div>
+    <p>A smart school canteen pre-order platform that eliminates queues, reduces food wastage, and improves the lunch experience for everyone.</p>
+  </div>
+  <div class="fcol"><h5>Quick Links</h5><ul><li><a href="#home">Home</a></li><li><a href="#menu-sec">Menu</a></li><li><a href="#how">How It Works</a></li><li><a href="#modules">Modules</a></li></ul></div>
+  <div class="fcol"><h5>Modules</h5><ul><li><a>User Interface</a></li><li><a>Authentication</a></li><li><a>Order Management</a></li><li><a>Admin Panel</a></li><li><a>Payment</a></li></ul></div>
+  <div class="fcol"><h5>Tech Stack</h5><ul><li><a>React.js</a></li><li><a>Node.js / Express</a></li><li><a>MongoDB</a></li><li><a>Firebase Auth</a></li><li><a>GitHub</a></li></ul></div>
+</div>
+<div class="fbot">Built with ❤ by <span>Anirudh (2520080028) & Ashwika (2520030224)</span> · 25CS1201E Front-End Development · 2025–26 Term III</div>
+
+<!-- ══ LOGIN MODAL ══ -->
+<div class="ov" id="loginM">
+  <div class="modal">
+    <button class="mx" onclick="closeM('loginM')">✕</button>
+    <h2 id="ltitle">Welcome Back 👋</h2>
+    <div class="rtabs">
+      <div class="rtab active" onclick="setRole('student',this)">🎒 Student</div>
+      <div class="rtab" onclick="setRole('admin',this)">🛠 Admin</div>
+    </div>
+    <div id="lview">
+      <div id="lal" class="al ale" style="display:none"></div>
+      <div class="fg3"><label>Roll Number / Email</label><input id="lid" placeholder="Enter roll no or email"></div>
+      <div class="fg3"><label>Password</label><input type="password" id="lpw" placeholder="Enter password"></div>
+      <button class="mbtn" onclick="doLogin()">Login →</button>
+      <div class="mlink">No account? <a onclick="showReg()">Register here</a></div>
+    </div>
+    <div id="rview" style="display:none">
+      <div id="ral" class="al ale" style="display:none"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+        <div class="fg3"><label>Full Name</label><input id="rn" placeholder="Your full name"></div>
+        <div class="fg3"><label>Class / Section</label><input id="rc" placeholder="e.g. 11-A"></div>
+      </div>
+      <div class="fg3"><label>Roll Number</label><input id="rr" placeholder="e.g. 2520080028"></div>
+      <div class="fg3"><label>Email</label><input type="email" id="re" placeholder="you@school.edu"></div>
+      <div class="fg3"><label>Password</label><input type="password" id="rpw" placeholder="Create a password"></div>
+      <button class="mbtn" onclick="doReg()">Create Account →</button>
+      <div class="mlink">Already registered? <a onclick="showLogin()">Login here</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CART MODAL ══ -->
+<div class="ov" id="cartM">
+  <div class="modal">
+    <button class="mx" onclick="closeM('cartM')">✕</button>
+    <h2>🛒 Your Cart</h2>
+    <div id="cartBody"></div>
+    <div id="cartFoot" style="display:none">
+      <div class="fg3" style="margin-top:1rem"><label>Pickup Time Slot</label>
+        <select id="slot"><option>12:00 PM – 12:15 PM</option><option>12:15 PM – 12:30 PM</option><option>12:30 PM – 12:45 PM</option><option>12:45 PM – 1:00 PM</option></select>
+      </div>
+      <button class="mbtn" onclick="goPay()">Proceed to Payment →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PAYMENT MODAL ══ -->
+<div class="ov" id="payM">
+  <div class="modal">
+    <button class="mx" onclick="closeM('payM')">✕</button>
+    <h2>💳 Payment</h2>
+    <div style="background:var(--s);border-radius:14px;padding:1.1rem;margin-bottom:1.2rem" id="psum"></div>
+    <p style="font-size:.86rem;font-weight:600;margin-bottom:.8rem">Choose Payment Method</p>
+    <div class="pg">
+      <div class="po sel" id="pu" onclick="selPay('pu')"><div class="pi">📱</div><span>UPI / QR Code</span></div>
+      <div class="po" id="pc" onclick="selPay('pc')"><div class="pi">💵</div><span>Cash on Pickup</span></div>
+      <div class="po" id="pk" onclick="selPay('pk')"><div class="pi">💳</div><span>Debit / Credit</span></div>
+      <div class="po" id="pw" onclick="selPay('pw')"><div class="pi">👛</div><span>School Wallet</span></div>
+    </div>
+    <button class="mbtn" onclick="placeOrder()">Confirm & Place Order ✓</button>
+  </div>
+</div>
+
+<!-- ══ ORDER CONFIRM MODAL ══ -->
+<div class="ov" id="confirmM">
+  <div class="modal" style="text-align:center">
+    <button class="mx" onclick="closeM('confirmM')">✕</button>
+    <div style="font-size:3.5rem;margin-bottom:.5rem">🎉</div>
+    <h2 style="margin-bottom:.5rem">Order Placed!</h2>
+    <p style="color:var(--mu);font-size:.9rem;margin-bottom:1.5rem">Your order has been sent to the canteen. Track it below.</p>
+    <div class="trk">
+      <div class="tn"><div class="td done">✓</div><span class="done">Placed</span></div>
+      <div class="tn"><div class="td act">👨‍🍳</div><span class="act">Preparing</span></div>
+      <div class="tn"><div class="td">🔔</div><span>Ready</span></div>
+      <div class="tn"><div class="td">✅</div><span>Collected</span></div>
+    </div>
+    <div style="background:var(--s);border-radius:14px;padding:1rem;margin-bottom:1.2rem;text-align:left" id="csum"></div>
+    <p style="font-size:.84rem;color:var(--mu);margin-bottom:1.2rem">📍 Collect from <strong>Counter 2</strong> at your selected time slot.</p>
+    <button class="mbtn" onclick="closeM('confirmM')">Done — Back to Home</button>
+  </div>
+</div>
+
+<script>
+// ── DATA ──
+let cart={},role='student',users=JSON.parse(localStorage.getItem('cu_users')||'[]'),orders=JSON.parse(localStorage.getItem('cu_orders')||'[]'),selPayM='pu';
+
+// ── CART ──
+function addCart(n,p){cart[n]=cart[n]?{...cart[n],q:cart[n].q+1}:{n,p,q:1};renderCart();updateBadge();toast(`${n} added to cart 🛒`,'ok')}
+function updateBadge(){const t=Object.values(cart).reduce((a,i)=>a+i.q,0);const b=document.getElementById('cb');b.textContent=t;b.style.display=t?'flex':'none'}
+function cartTotal(){return Object.values(cart).reduce((a,i)=>a+i.p*i.q,0)}
+function renderCart(){
+  const b=document.getElementById('cartBody'),f=document.getElementById('cartFoot');
+  const items=Object.values(cart);
+  if(!items.length){b.innerHTML='<div class="empty">🛒 Your cart is empty.<br>Add items from the menu!</div>';f.style.display='none';return}
+  b.innerHTML=items.map(i=>`<div class="ci"><div class="cn">${i.n}</div><div style="display:flex;align-items:center;gap:.6rem"><div class="qc"><button class="qb" onclick="chgQ('${i.n}',-1)">−</button><span class="qn">${i.q}</span><button class="qb" onclick="chgQ('${i.n}',1)">+</button></div><span class="cp">₹${i.p*i.q}</span><button class="cr" onclick="remItem('${i.n}')">✕</button></div></div>`).join('')+`<div class="ctotal"><span>Total</span><span>₹${cartTotal()}</span></div>`;
+  f.style.display='block';
+}
+function chgQ(n,d){if(!cart[n])return;cart[n].q+=d;if(cart[n].q<=0)delete cart[n];renderCart();updateBadge()}
+function remItem(n){delete cart[n];renderCart();updateBadge();toast('Item removed')}
+
+// ── PAYMENT ──
+function goPay(){
+  const items=Object.values(cart);if(!items.length)return;
+  document.getElementById('psum').innerHTML='<strong style="font-family:Playfair Display,serif;font-size:.95rem">Order Summary</strong><br><br>'+items.map(i=>`<div style="display:flex;justify-content:space-between;font-size:.86rem;margin-bottom:.3rem"><span>${i.n} × ${i.q}</span><span>₹${i.p*i.q}</span></div>`).join('')+`<div style="display:flex;justify-content:space-between;font-weight:700;border-top:1px solid #e0d0c0;margin-top:.6rem;padding-top:.6rem"><span>Total</span><span style="color:var(--o)">₹${cartTotal()}</span></div>`;
+  closeM('cartM');openM('payM');
+}
+function selPay(id){['pu','pc','pk','pw'].forEach(x=>document.getElementById(x).classList.remove('sel'));document.getElementById(id).classList.add('sel');selPayM=id}
+function placeOrder(){
+  const slot=document.getElementById('slot').value;
+  const items=Object.values(cart);const total=cartTotal();
+  const order={id:'#CN'+Date.now().toString().slice(-4),items:items.map(i=>`${i.n} x${i.q}`),total,slot,status:'Preparing',pay:selPayM,date:new Date().toLocaleString()};
+  orders.unshift(order);localStorage.setItem('cu_orders',JSON.stringify(orders));
+  document.getElementById('csum').innerHTML=`<div style="font-size:.86rem"><strong>Order ${order.id}</strong><br><br>${order.items.join(', ')}<br><br><div style="display:flex;justify-content:space-between"><span>Total</span><strong style="color:var(--o)">₹${total}</strong></div><div style="display:flex;justify-content:space-between"><span>Slot</span><strong>${slot}</strong></div></div>`;
+  cart={};updateBadge();closeM('payM');openM('confirmM');toast('Order placed successfully! 🎉','ok');
+}
+
+// ── AUTH ──
+function doLogin(){
+  const id=document.getElementById('lid').value.trim(),pw=document.getElementById('lpw').value;
+  const al=document.getElementById('lal');al.style.display='none';
+  if(!id||!pw){al.textContent='Please fill all fields.';al.style.display='block';return}
+  if(role==='admin'&&id==='admin'&&pw==='admin123'){toast('Welcome, Admin! 🛠','ok');closeM('loginM');return}
+  const u=users.find(x=>(x.roll===id||x.email===id)&&x.pw===pw);
+  if(!u){al.textContent='Invalid credentials. Try again.';al.style.display='block';return}
+  toast(`Welcome back, ${u.name}! 👋`,'ok');closeM('loginM');
+}
+function doReg(){
+  const n=document.getElementById('rn').value.trim(),c=document.getElementById('rc').value.trim(),r=document.getElementById('rr').value.trim(),e=document.getElementById('re').value.trim(),pw=document.getElementById('rpw').value;
+  const al=document.getElementById('ral');al.style.display='none';
+  if(!n||!c||!r||!e||!pw){al.textContent='Please fill all fields.';al.style.display='block';return}
+  if(users.find(x=>x.roll===r||x.email===e)){al.textContent='Account already exists with this roll number or email.';al.style.display='block';return}
+  users.push({name:n,class:c,roll:r,email:e,pw});localStorage.setItem('cu_users',JSON.stringify(users));
+  toast(`Account created! Welcome, ${n} 🎉`,'ok');closeM('loginM');
+}
+function setRole(r,el){role=r;document.querySelectorAll('.rtab').forEach(x=>x.classList.remove('active'));el.classList.add('active')}
+function showReg(){document.getElementById('lview').style.display='none';document.getElementById('rview').style.display='block';document.getElementById('ltitle').textContent='Create Account 🎒'}
+function showLogin(){document.getElementById('rview').style.display='none';document.getElementById('lview').style.display='block';document.getElementById('ltitle').textContent='Welcome Back 👋'}
+
+// ── MENU FILTER ──
+function filter(cat,el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');
+  document.querySelectorAll('.mc').forEach(c=>{c.style.display=(cat==='all'||c.dataset.c===cat)?'':'none'});
+}
+
+// ── MODAL ──
+function openM(id){document.getElementById(id).classList.add('open')}
+function closeM(id){document.getElementById(id).classList.remove('open')}
+document.querySelectorAll('.ov').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open')}));
+
+// ── TOAST ──
+function toast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className='toast'+(type?' '+type:'');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800)}
+</script>
+</body>
+</html>
