@@ -1,0 +1,6 @@
+{
+  "name": "Smart Canteen",
+  "description": "Pre-ordering, payments, and real-time order tracking for school cafeterias.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
